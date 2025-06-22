@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
+import { useAppStore } from '../../store/useAppStore';
+import { useNavigate } from 'react-router';
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -12,6 +14,10 @@ const Login = () => {
         password: ''
     });
     const [isLoading, setIsLoading] = useState(false);
+    const login = useAppStore((state) => state.login);
+    const navigate = useNavigate();
+
+
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -52,6 +58,8 @@ const Login = () => {
         e.preventDefault();
         if (validate()) {
             setIsLoading(true);
+            login();
+            navigate("/user/home")
             setTimeout(() => {
                 console.log('Login data:', formData);
                 setIsLoading(false);

@@ -5,10 +5,9 @@ export const AuthLayout = () => {
 
     const navItems = [
     { path: '/', label: 'Inicio' },
-    { path: '/', label: 'New Libro' },
-    { path: '/', label: 'Préstamo' },
-    { path: '/', label: 'Devolución' },
-    { path: '/', label: 'Lector' },
+    { path: '/prestamos', label: 'Mis Prestamos' },
+    { path: '/multas', label: 'Mis Multas' },
+    { path: '/', label: 'Cerrar Sesión' }
   ];
   return (
     <div className="auth-layout">
@@ -16,6 +15,7 @@ export const AuthLayout = () => {
         logo="BooksUCM" 
         items={navItems}
         className="shadow-sm"
+        isAuthenticated={true}
       />
       <main className="flex-grow">
         <Outlet />
