@@ -4,7 +4,7 @@ import Navbar from "../Components/Navbar";
 export const AuthLayout = () => {
 
     const navItems = [
-    { path: '/', label: 'Inicio' },
+    { path: '/user/home', label: 'Inicio' },
     { path: '/prestamos', label: 'Mis Prestamos' },
     { path: '/multas', label: 'Mis Multas' },
     { path: '/', label: 'Cerrar Sesión' }

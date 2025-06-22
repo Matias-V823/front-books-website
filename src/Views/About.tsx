@@ -57,9 +57,9 @@ const About = () => {
           <p className="text-lg text-gray-600 mb-6">
             Un espacio moderno de aprendizaje y descubrimiento para la comunidad universitaria.
           </p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2">
+          <a href='https://sibib.ucm.cl/' target="_blank" className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2 w-84">
             <FaSearch /> Conoce nuestros servicios
-          </button>
+          </a>
         </div>
         <div className="md:w-1/2 rounded-xl overflow-hidden shadow-2xl">
           <img
