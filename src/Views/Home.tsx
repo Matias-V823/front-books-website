@@ -12,20 +12,20 @@ const Home = () => {
         <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-1">
           Buscar libro
         </label>
-        <div className="flex gap-2">
-          <select className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        <div className="flex gap-2 bg-gradient-to-r from-blue-600 to-blue-800 p-4 rounded-lg">
+          <select className="px-3 py-2 text-white border border-gray-300 rounded-md  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
             <option>Todos</option>
             {categories.map((category, index) => (
-              <option key={index}>{category}</option>
+              <option key={index} className="text-zinc-900">{category}</option>
             ))}
           </select>
           <input
             type="text"
             id="search"
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            className="flex-1 px-3 py-2 text-white  border border-gray-100 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             placeholder="Título o autor..."
           />
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <button className="bg-white text-blue-600 hover:bg-blue-50 font-medium py-2 px-4 rounded-full transition-all duration-300 shadow-md">
             Buscar
           </button>
 
