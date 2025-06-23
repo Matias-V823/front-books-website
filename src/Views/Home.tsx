@@ -1,10 +1,17 @@
+import { useEffect } from "react"
 import CardBook from "../Components/CardBook"
+import { useAppStore } from "../store/useAppStore"
 
 const Home = () => {
-
+  const books = useAppStore((state) => state.books);
+  const getBooks = useAppStore((state) => state.getBooks);
 
   const categories = ['Ficción', 'No Ficción', 'Ciencia', 'Bibliografía']
 
+  useEffect(() => {
+    getBooks()
+    console.log('Libros: ', books)
+  }, [])
 
   return (
     <div className="p-4">
