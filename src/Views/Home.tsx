@@ -3,14 +3,11 @@ import CardBook from "../Components/CardBook"
 import { useAppStore } from "../store/useAppStore"
 
 const Home = () => {
-  const books = useAppStore((state) => state.books);
   const getBooks = useAppStore((state) => state.getBooks);
-
   const categories = ['Ficción', 'No Ficción', 'Ciencia', 'Bibliografía']
 
   useEffect(() => {
     getBooks()
-    console.log('Libros: ', books)
   }, [])
 
   return (
@@ -21,7 +18,7 @@ const Home = () => {
         </label>
         <div className="flex gap-2 bg-gradient-to-r from-blue-600 to-blue-800 p-4 rounded-lg">
           <select className="px-3 py-2 text-white border border-gray-300 rounded-md  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
-            <option>Todos</option>
+            <option className="text-zinc-900">Todos</option>
             {categories.map((category, index) => (
               <option key={index} className="text-zinc-900">{category}</option>
             ))}
@@ -42,7 +39,7 @@ const Home = () => {
 
       <section>
         <h1 className="text-2xl font-bold mb-6">Explora nuestra colección</h1>
-        <CardBook />
+        <CardBook/>
       </section>
     </div>
   )

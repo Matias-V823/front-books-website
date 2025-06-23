@@ -5,8 +5,8 @@ import type { bookType } from "../types";
 
 //publica
 export async function getBooks(): Promise<bookType[]> {
-  const response = await axios.get("http://localhost:8087/all");
-  return response.data;
+  const response = await axios.get("http://localhost:8087/api/book/all");
+  return response.data.content;
 }
 
 

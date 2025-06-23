@@ -1,7 +1,7 @@
 export type bookType = {
-  id: number;
+  idBook: number;
   author: string;
-  image: string | null;
+  image64: string | null;
   title: string;
   type: string;
 };
