@@ -1,13 +1,15 @@
 import { Outlet } from "react-router";
 import Navbar from "../Components/Navbar";
+import { useAppStore } from "../store/useAppStore";
 
 export const AuthLayout = () => {
+
+    const logout = useAppStore((state) => state.logout)
 
     const navItems = [
     { path: '/user/home', label: 'Inicio' },
     { path: '/prestamos', label: 'Mis Prestamos' },
     { path: '/multas', label: 'Mis Multas' },
-    { path: '/', label: 'Cerrar Sesión' }
   ];
   return (
     <div className="auth-layout">
@@ -16,6 +18,7 @@ export const AuthLayout = () => {
         items={navItems}
         className="shadow-sm"
         isAuthenticated={true}
+        onLogout={logout}
       />
       <main className="flex-grow">
         <Outlet />
