@@ -2,15 +2,17 @@ import { useState } from 'react';
 import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import { useAppStore } from '../../store/useAppStore';
 import { useNavigate } from 'react-router';
+import { postSignIn } from '../../Services/authServices';
+import type { loginType } from '../../types';
 
 const Login = () => {
-    const [formData, setFormData] = useState({
-        email: '',
+    const [formData, setFormData] = useState<loginType>({
+        username: '',
         password: ''
     });
     const [showPassword, setShowPassword] = useState(false);
     const [errors, setErrors] = useState({
-        email: '',
+        username: '',
         password: ''
     });
     const [isLoading, setIsLoading] = useState(false);
@@ -29,16 +31,16 @@ const Login = () => {
 
     const validate = () => {
         const newErrors = {
-            email: '',
+            username: '',
             password: ''
         };
         let isValid = true;
 
-        if (!formData.email) {
-            newErrors.email = 'Email es requerido';
+        if (!formData.username) {
+            newErrors.username = 'username es requerido';
             isValid = false;
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            newErrors.email = 'Email no válido';
+        } else if (!/\S+@\S+\.\S+/.test(formData.username)) {
+            newErrors.username = 'username no válido';
             isValid = false;
         }
 
@@ -54,16 +56,23 @@ const Login = () => {
         return isValid;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (validate()) {
-            setIsLoading(true);
-            login();
-            navigate("/user/home")
-            setTimeout(() => {
-                console.log('Login data:', formData);
-                setIsLoading(false);
-            }, 1500);
+        if (!validate()) return;
+
+        setIsLoading(true);
+        try {
+            const userData = await postSignIn(formData);
+            login(userData); // Guarda token y datos del usuario en Zustand
+            navigate("/user/home");
+        } catch (err: any) {
+            console.error("Login error:", err);
+            setErrors({
+                username: 'Credenciales incorrectas o servidor no disponible',
+                password: ''
+            });
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -88,7 +97,7 @@ const Login = () => {
 
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                            <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
                                 Email
                             </label>
                             <div className="relative">
@@ -97,15 +106,15 @@ const Login = () => {
                                 </div>
                                 <input
                                     type="email"
-                                    id="email"
-                                    name="email"
-                                    value={formData.email}
+                                    id="username"
+                                    name="username"
+                                    value={formData.username}
                                     onChange={handleChange}
-                                    className={`block w-full pl-10 pr-3 py-2 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
-                                    placeholder="tu@email.com"
+                                    className={`block w-full pl-10 pr-3 py-2 border ${errors.username ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
+                                    placeholder="tu@username.com"
                                 />
                             </div>
-                            {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
+                            {errors.username && <p className="mt-1 text-sm text-red-600">{errors.username}</p>}
                         </div>
 
                         <div>

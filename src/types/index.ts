@@ -47,3 +47,9 @@ export type userRole = {
   id_rol: number;
   email: string;
 };
+
+
+export interface loginType {
+  username: string,
+  password: string
+}
