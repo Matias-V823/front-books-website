@@ -3,5 +3,7 @@
 [x] Condicionar el codigo y guardar token de inicio de sesion
 [] Condicionar rutas para publico, lector y administrador
 [] Consumir llamados de vista lector
+    [] consumir api prestamos
+    [] consumir api multas
 [] Crear vista administrador
 [] Crear componentes para usuario administrador
