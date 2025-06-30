@@ -4,6 +4,6 @@
 [] Condicionar rutas para publico, lector y administrador
 [] Consumir llamados de vista lector
     [] consumir api prestamos
-    [] consumir api multas
+    [S] consumir api multas
 [] Crear vista administrador
 [] Crear componentes para usuario administrador

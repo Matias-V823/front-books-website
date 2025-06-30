@@ -1,12 +1,15 @@
 import axios from "axios";
-import type { bookType } from "../types";
 
 // url/book/{}
 
 //publica
-export async function getBooks(): Promise<bookType[]> {
-  const response = await axios.get("http://localhost:8087/api/book/all");
-  return response.data.content;
+export async function getBooks() {
+  try {
+    const response = await axios.get("http://localhost:8087/api/book/all");
+    return response.data.content;
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 
@@ -22,11 +25,34 @@ export async function getBooksTitle() {
 
 
 export async function postNewCopyBook() {
-   
+
 }
 
 
 //reserva libro
 export async function bookingCopy() {
+
+}
+
+
+//mis prestamos
+
+export async function loansBooks(){
+  try {
+    const response = await axios.get("http://localhost:8087/api/book/all");
+    return response.data.content;
     
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+//mis multas
+export async function finesBooks(email: string){
+  try {
+    const response = await axios.get(`http://localhost:8087/api/fine/find/${email}`);
+    return response.data.content;
+  } catch (error) {
+    console.log(error)
+  }
 }

@@ -22,11 +22,10 @@ export type copyBookType = {
 };
 
 export type fineType = {
-  id_fine: number;
+  idFine: number;
   amount: number;
   description: string;
   state: boolean;
-  user_fk: string;
 };
 
 export type rolType = {

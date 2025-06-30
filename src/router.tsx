@@ -5,8 +5,8 @@ import Login from "./Views/auth/Login";
 import About from "./Views/About";
 import { AuthLayout } from "./Layouts/AuthLayout";
 import { ProtectedRoute } from "./Components/ProtectedRoute";
-import Prestamos from "./Views/Prestamos";
-import Multas from "./Views/Multas";
+import Loans from "./Views/Loans";
+import Fines from "./Views/Fines";
 
 export const router = createBrowserRouter([
     {
@@ -34,8 +34,8 @@ export const router = createBrowserRouter([
         ),
         children: [
             { path: "/user/home", element: <Home/> },
-            { path: "/prestamos", element: <Prestamos/> },
-            { path: "/multas", element: <Multas/> },
+            { path: "/prestamos", element: <Loans/> },
+            { path: "/multas", element: <Fines/> },
         ]
     }
 ])
