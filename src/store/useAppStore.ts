@@ -3,15 +3,17 @@ import { createJSONStorage, devtools, persist } from 'zustand/middleware'; //
 import { authState, type authSliceType } from './authSlice';
 import { bookState, type bookSliceType } from './bookSlice';
 import { fineState, type fineSliceType } from './fineSlice';
+import { bookingState, type bookingSliceType } from './bookingSlice';
 
-type CombinedState = authSliceType & bookSliceType & fineSliceType
+type CombinedState = authSliceType & bookSliceType & fineSliceType & bookingSliceType
 
 export const useAppStore = create<CombinedState>()(devtools(
   persist(
     (...a) => ({
       ...authState(...a),
       ...bookState(...a),
-      ...fineState(...a)
+      ...fineState(...a),
+      ...bookingState(...a),
     }),
     {
       name: 'app-storage',

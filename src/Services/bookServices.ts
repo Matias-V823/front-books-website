@@ -37,11 +37,10 @@ export async function bookingCopy() {
 
 //mis prestamos
 
-export async function loansBooks(){
+export async function bookingBooks(email: string){
   try {
-    const response = await axios.get("http://localhost:8087/api/book/all");
+    const response = await axios.get(`http://localhost:8087/api/booking/find/${email}`);
     return response.data.content;
-    
   } catch (error) {
     console.log(error)
   }

@@ -20,11 +20,11 @@ export const AuthLayout = () => {
         isAuthenticated={true}
         onLogout={logout}
       />
-      <main className="flex-grow">
+      <main className="min-h-screen flex flex-col">
         <Outlet />
       </main>
       
-      <footer className="bg-gray-100 py-4">
+      <footer className="bg-gray-100 py-4 ">
         <div className="container mx-auto px-4 text-center text-gray-600">
           Created by Matias V & Rafael M {new Date().getFullYear()}
         </div>
