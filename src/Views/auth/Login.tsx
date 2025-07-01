@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import { useAppStore } from '../../store/useAppStore';
-import { useNavigate } from 'react-router';
+import { useNavigate, Link } from 'react-router';
 import { postSignIn } from '../../Services/authServices';
 import type { loginType } from '../../types';
 
@@ -63,7 +63,7 @@ const Login = () => {
         setIsLoading(true);
         try {
             const userData = await postSignIn(formData);
-            login(userData); // Guarda token y datos del usuario en Zustand
+            login(userData);
             navigate("/user/home");
         } catch (err: any) {
             console.error("Login error:", err);
@@ -152,6 +152,15 @@ const Login = () => {
                             {isLoading ? 'Ingresando...' : 'Ingresar'}
                         </button>
                     </form>
+
+                    <div className="mt-6 text-center">
+                        <p className="text-sm text-gray-600">
+                            ¿No tienes cuenta?{' '}
+                            <Link to="/register" className="text-blue-600 hover:underline font-medium">
+                                Quiero registrarme
+                            </Link>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

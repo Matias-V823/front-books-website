@@ -7,6 +7,7 @@ import { AuthLayout } from "./Layouts/AuthLayout";
 import { ProtectedRoute } from "./Components/ProtectedRoute";
 import Booking from "./Views/Booking";
 import Fines from "./Views/Fines";
+import Register from "./Views/auth/Register";
 
 export const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login/>
+            },
+            {
+                path: '/register',
+                element: <Register/>
             }
         ]
     },

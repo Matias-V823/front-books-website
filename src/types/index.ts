@@ -52,3 +52,10 @@ export interface loginType {
   username: string,
   password: string
 }
+
+export type registerType = {
+  email: string;
+  name: string;
+  lastName: string;
+  password: string;
+}
