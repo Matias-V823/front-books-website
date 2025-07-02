@@ -63,6 +63,7 @@ const Login = () => {
         setIsLoading(true);
         try {
             const userData = await postSignIn(formData);
+            console.log("usuario:",userData)
             login(userData);
             navigate("/user/home");
         } catch (err: any) {

@@ -8,6 +8,7 @@ import { ProtectedRoute } from "./Components/ProtectedRoute";
 import Booking from "./Views/Booking";
 import Fines from "./Views/Fines";
 import Register from "./Views/auth/Register";
+import AdminLayout from "./Layouts/AdminLayout";
 
 export const router = createBrowserRouter([
     {
@@ -41,6 +42,23 @@ export const router = createBrowserRouter([
             { path: "/user/home", element: <Home/> },
             { path: "/prestamos", element: <Booking/> },
             { path: "/multas", element: <Fines/> },
+        ]
+    },
+    {
+        element: (
+            <ProtectedRoute requireAdmin>
+                <AdminLayout/>
+            </ProtectedRoute>
+        ),
+        children: [
+            { path: "/admin/home", element: <Home/> },
+            { path: "/admin/prestamos", },
+            { path: "/admin/multas" },
+            { path: "/admin/libros/nuevo" },
+            { path: "/admin/prestamos/nuevo" },
+            { path: "/admin/devoluciones" },
+            { path: "/admin/lectores" },
+
         ]
     }
 ])
