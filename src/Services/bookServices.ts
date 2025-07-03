@@ -13,28 +13,6 @@ export async function getBooks() {
 }
 
 
-//deben tener token
-export async function addBook() {
-
-}
-
-
-export async function getBooksTitle() {
-
-}
-
-
-export async function postNewCopyBook() {
-
-}
-
-
-//reserva libro
-export async function bookingCopy() {
-
-}
-
-
 //mis prestamos
 
 export async function bookingBooks(email: string){

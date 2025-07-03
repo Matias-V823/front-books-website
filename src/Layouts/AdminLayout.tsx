@@ -7,8 +7,8 @@ const AdminLayout = () => {
   const logout = useAppStore((state) => state.logout);
 
   const navLector = [
-    { path: "/prestamos", label: "Mis Prestamos" },
-    { path: "/multas", label: "Mis Multas" },
+    { path: "/admin/prestamos", label: "Mis Prestamos" },
+    { path: "/admin/multas", label: "Mis Multas" },
   ];
 
   const navAdmin = [

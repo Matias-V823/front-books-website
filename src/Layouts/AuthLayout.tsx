@@ -8,8 +8,8 @@ export const AuthLayout = () => {
 
     const navItems = [
     { path: '/user/home', label: 'Inicio' },
-    { path: '/prestamos', label: 'Mis Prestamos' },
-    { path: '/multas', label: 'Mis Multas' },
+    { path: '/user/prestamos', label: 'Mis Prestamos' },
+    { path: '/user/multas', label: 'Mis Multas' },
   ];
   return (
     <div className="auth-layout">

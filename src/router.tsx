@@ -9,6 +9,10 @@ import Booking from "./Views/Booking";
 import Fines from "./Views/Fines";
 import Register from "./Views/auth/Register";
 import AdminLayout from "./Layouts/AdminLayout";
+import NewBook from "./Views/admin/NewBook";
+import NewLoan from "./Views/admin/NewLoan";
+import ReturnBook from "./Views/admin/ReturnBook";
+import LectorAdmin from "./Views/admin/LectorAdmin";
 
 export const router = createBrowserRouter([
     {
@@ -40,8 +44,8 @@ export const router = createBrowserRouter([
         ),
         children: [
             { path: "/user/home", element: <Home/> },
-            { path: "/prestamos", element: <Booking/> },
-            { path: "/multas", element: <Fines/> },
+            { path: "/user/prestamos", element: <Booking/> },
+            { path: "/user/multas", element: <Fines/> },
         ]
     },
     {
@@ -52,12 +56,12 @@ export const router = createBrowserRouter([
         ),
         children: [
             { path: "/admin/home", element: <Home/> },
-            { path: "/admin/prestamos", },
-            { path: "/admin/multas" },
-            { path: "/admin/libros/nuevo" },
-            { path: "/admin/prestamos/nuevo" },
-            { path: "/admin/devoluciones" },
-            { path: "/admin/lectores" },
+            { path: "/admin/prestamos", element: <Booking/> },
+            { path: "/admin/multas" , element: <Fines/>},
+            { path: "/admin/libros/nuevo", element: <NewBook/> },
+            { path: "/admin/prestamos/nuevo" , element: <NewLoan/>},
+            { path: "/admin/devoluciones" , element: <ReturnBook/>},
+            { path: "/admin/lectores" , element: <LectorAdmin/>},
 
         ]
     }
