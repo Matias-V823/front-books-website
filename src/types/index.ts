@@ -38,7 +38,6 @@ export type userLibraryType = {
   email: string;
   last_name: string;
   name: string;
-  password: string;
   state: boolean;
 };
 

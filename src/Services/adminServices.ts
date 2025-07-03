@@ -15,11 +15,53 @@ export const getCopyAdmin = async (title: string) => {
                 },
             }
         );
-        console.log('Get copy', response.data)
         return response.data;
     } catch (error) {
         console.log(error);
         throw error;
+
+    }
+};
+
+export const getReaderAdmin = async (email: string) => {
+    const token = useAppStore.getState().token;
+
+    try {
+        const response = await axios.get(
+            `http://localhost:8087/api/reader/find/${email}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
+        return response.data.content;
+    } catch (error) {
+        console.log(error);
+        throw error;
+
+    }
+};
+
+export const readerStateAdmin = async (email: string) => {
+    const token = useAppStore.getState().token;
+
+    try {
+        const response = await axios.post(
+            `http://localhost:8087/api/reader/state/${email}`,{},
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
+        console.log('Reader State:', response.data)
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        throw error
 
     }
 };
@@ -97,7 +139,6 @@ export const newBookingAdmin = async (data : { email: string; idCopyBook: number
                 'Content-Type': 'application/json',
             },
         });
-        console.log(response.data)
         return response.data;
     } catch (error) {
         console.log(error)
@@ -116,7 +157,6 @@ export const returnBookingAdmin = async (idBook: string) => {
                 'Content-Type': 'application/json',
             },
         });
-        console.log(response.data)
         return response.data;
     } catch (error) {
         console.log(error)
