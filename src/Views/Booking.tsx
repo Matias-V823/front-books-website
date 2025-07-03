@@ -1,16 +1,26 @@
 import { useEffect } from "react";
 import { useAppStore } from "../store/useAppStore";
+import { bookingBooks } from "../Services/bookServices";
 
 const Booking = () => {
   const email = useAppStore((state) => state.user?.email);
   const bookings = useAppStore((state) => state.booking);
-  const fetchBookings = useAppStore((state) => state.bookingBooks);
+  const setBooking = useAppStore((state) => state.setBooking);
 
   useEffect(() => {
-    if (email) {
-      fetchBookings(email);
-    }
-  }, [email]);
+    console.log(email)
+    const fetchBookings = async () => {
+      if (email) {
+        const result = await bookingBooks(email);
+        console.log(result)
+        if (result) {
+          setBooking(result);
+        }
+      }
+    };
+
+    fetchBookings();
+  }, [email, setBooking]);
 
   return (
     <div className="p-6">
@@ -33,7 +43,15 @@ const Booking = () => {
               bookings.map((booking) => (
                 <tr key={booking.id_booking}>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="h-10 w-10 bg-gray-300 rounded"></div>
+                    {booking.copyBook?.book?.image64 ? (
+                      <img
+                        src={`data:image/jpeg;base64,${booking.copyBook.book.image64}`}
+                        alt="Portada del libro"
+                        className="h-10 w-10 rounded object-cover"
+                      />
+                    ) : (
+                      <div className="h-10 w-10 bg-gray-300 rounded"></div>
+                    )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">Título</td>
                   <td className="px-6 py-4 whitespace-nowrap">Autor</td>
@@ -44,8 +62,13 @@ const Booking = () => {
                       {booking.state ? "Activo" : "Vencido"}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">{booking.date_booking}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{booking.date_return}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {new Date(booking.dateBooking).toLocaleString("es-CL")}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {new Date(booking.dateReturn).toLocaleString("es-CL")}
+                  </td>
+
                 </tr>
               ))
             ) : (

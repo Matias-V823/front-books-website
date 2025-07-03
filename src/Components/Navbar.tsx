@@ -37,9 +37,9 @@ const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
               {typeof logo === 'string' ? (
-                <Link to="/" className="text-xl font-semibold text-gray-900">
+                <p className="text-xl font-semibold text-gray-900">
                   {logo}
-                </Link>
+                </p>
               ) : (
                 logo
               )}

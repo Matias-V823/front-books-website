@@ -8,17 +8,18 @@ export type bookType = {
 
 export type bookingType = {
   id_booking: number;
-  date_booking: string;
-  date_return: string;
+  dateBooking: string;
+  dateReturn: string;
   state: boolean;
   copybook: number;
   user_fk: string;
+  copyBook: copyBookType;
 };
 
 export type copyBookType = {
-  id_copybook: number;
+  idCopyBook: number;
   state: boolean;
-  book: number;
+  book: bookType;
 };
 
 export type fineType = {
