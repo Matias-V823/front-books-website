@@ -68,27 +68,29 @@ export const readerStateAdmin = async (email: string) => {
 
 
 
-export const registerBookAdmin = async (data: any) => {
-    const token = useAppStore.getState().token;
+export const registerBookAdmin = async (data: FormData) => {
+  const token = useAppStore.getState().token;
 
-    if (!token) throw new Error("Token no disponible");
-    try {
-        const response = await axios.post(
-            'http://localhost:8087/api/book/new',
-            data,
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-            }
-        );
-        return response.data;
-    } catch (error) {
-        console.log(error);
-        throw error;
-    }
+  if (!token) throw new Error("Token no disponible");
+
+  try {
+    const response = await axios.post(
+      'http://localhost:8087/api/book/new',
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
+
 
 
 
@@ -118,7 +120,6 @@ export const getUserAdmin = async (email: string) => {
         const response = await axios.post(`http://localhost:8087/api/book/find/${email}`, {},{
             headers: {
                 Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
             },
         });
         return response.data;

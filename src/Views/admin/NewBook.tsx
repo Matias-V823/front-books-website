@@ -37,46 +37,41 @@ const NewBook = () => {
       return;
     }
 
-    const reader = new FileReader();
-    reader.onloadend = async () => {
-      const base64String = reader.result?.toString().split(',')[1];
-      const payload = {
-        title: bookData.title,
-        author: bookData.author,
-        type: bookData.type,
-        image64: base64String,
-      };
+    const formData = new FormData();
+    formData.append("title", bookData.title);
+    formData.append("author", bookData.author);
+    formData.append("type", bookData.type);
+    formData.append("image64", image);
 
-      try {
-        await registerBookAdmin(payload);
-        setSuccessMessage("✅ Libro registrado con éxito");
-        setTimeout(() => setSuccessMessage(""), 5000);
-      } catch (error) {
-        console.error(error);
-        setSuccessMessage("❌ Error al registrar el libro");
-        setTimeout(() => setSuccessMessage(""), 5000);
-      }
-    };
-    reader.readAsDataURL(image);
+    try {
+      await registerBookAdmin(formData);
+      setSuccessMessage("✅ Libro registrado con éxito");
+      setTimeout(() => setSuccessMessage(""), 5000);
+    } catch (error) {
+      console.error(error);
+      setSuccessMessage("❌ Error al registrar el libro");
+      setTimeout(() => setSuccessMessage(""), 5000);
+    }
   };
 
 
-const handleSearch = async () => {
-  try {
-    const response = await getCopyAdmin(searchTitle);
-    const bookSearch = response.content.map((item: any) => ({
-      id: String(item.idCopyBook),
-      title: item.book.title,
-      copy: item.idCopyBook,
-      type: item.book.type,
-    }));
-    setSearchResults(bookSearch);
-  } catch (error) {
-    console.error("Error al buscar copias:", error);
-    setSuccessMessage("❌ Error al buscar copias");
-    setTimeout(() => setSuccessMessage(""), 5000);
-  }
-};
+
+  const handleSearch = async () => {
+    try {
+      const response = await getCopyAdmin(searchTitle);
+      const bookSearch = response.content.map((item: any) => ({
+        id: String(item.idCopyBook),
+        title: item.book.title,
+        copy: item.idCopyBook,
+        type: item.book.type,
+      }));
+      setSearchResults(bookSearch);
+    } catch (error) {
+      console.error("Error al buscar copias:", error);
+      setSuccessMessage("❌ Error al buscar copias");
+      setTimeout(() => setSuccessMessage(""), 5000);
+    }
+  };
 
 
   const handleCreateCopy = async () => {
