@@ -19,12 +19,11 @@ export const useAppStore = create<CombinedState>()(devtools(
       name: 'app-storage',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
-        ...state,
-        notification: undefined,
         isAuthenticated: state.isAuthenticated,
         token: state.token,
-        user: state.user,
+        user: state.user
       })
+
     },
   ),
 ));
