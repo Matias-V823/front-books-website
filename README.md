@@ -1,3 +1,5 @@
+/** NOTA: LA BASE DE DATOS ESTÁ EN RENDER HABILITADA HASTA EL 13 DE JULIO **/
+
 # 📚 Frontend Books Website
 
 Este proyecto es una aplicación web para la gestión de libros, desarrollada con las siguientes tecnologías:
